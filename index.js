@@ -1,7 +1,23 @@
 import express from "express";
+import cors from "cors";
+import * as dotenv from "dotenv";
+import morgan from "morgan";
 
-const PORT = 3000;
+dotenv.config();
+
+const PORT = process.env.PORT;
 const app = express();
+
+// logger
+app.use(morgan("dev"));
+
+// cors
+app.use(cors());
+
+// parse req.body
+app.use(express.json());
+
+// use routers
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
