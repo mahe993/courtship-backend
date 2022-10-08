@@ -2,8 +2,12 @@
 import Sequelize from "sequelize";
 import fs from "fs";
 import path from "path";
-import config from "../../config/database";
+import config from "../../config/database.js";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const basename = path.basename(__filename);
 const db = {};
 
