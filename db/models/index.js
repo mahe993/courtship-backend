@@ -22,16 +22,20 @@ const sequelize = new Sequelize(
   }
 );
 
-fs.readdirSync(__dirname)
-  .filter((file) => {
-    return (
+const files = fs
+  .readdirSync(__dirname)
+  .filter(
+    (file) =>
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach((file) => {
-    const model = sequelize.import(path.join(__dirname, file));
+  );
+
+await Promise.all(
+  files.map(async (file) => {
+    const module = await import(path.join(__dirname, file));
+    const model = module.default(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
-  });
+  })
+);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

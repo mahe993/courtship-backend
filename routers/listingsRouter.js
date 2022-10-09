@@ -12,6 +12,7 @@ export default class ListingsRouter {
       "/:userId",
       this.controller.getUserListings.bind(this.controller)
     );
+    router.post("/", this.controller.createCourt.bind(this.controller));
     return router;
   }
 }

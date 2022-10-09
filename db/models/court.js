@@ -1,6 +1,6 @@
 "use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+import { Model } from "sequelize";
+export default (sequelize, DataTypes) => {
   class Court extends Model {
     /**
      * Helper method for defining associations.
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       description: DataTypes.TEXT,
       price: DataTypes.INTEGER,
-      expiry: DataTypes.DATE,
+      expiry: DataTypes.DATEONLY,
     },
     {
       sequelize,

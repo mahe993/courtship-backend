@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      courtName: {
+      court_name: {
         allowNull: false,
         type: Sequelize.STRING,
       },
@@ -27,7 +27,7 @@ module.exports = {
       },
       expiry: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       created_at: {
         allowNull: false,

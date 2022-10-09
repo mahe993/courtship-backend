@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "migrate": "node ./node_modules/.bin/sequelize-cli db:migrate"
   },
   "dependencies": {
     "cors": "^2.8.5",

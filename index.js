@@ -14,10 +14,10 @@ const PORT = process.env.PORT;
 const app = express();
 
 //destructure models from db
-const { model } = db;
+const { court } = db;
 
 //initialize controllers, controllers take in model as parameter
-const listingsController = new ListingsController(model);
+const listingsController = new ListingsController(court);
 
 //initialize routers, routers take in controller as parameter
 const listingsRouter = new ListingsRouter(listingsController).routes();
