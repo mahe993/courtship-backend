@@ -20,7 +20,6 @@ export default class ListingsController extends BaseController {
 
   // Create a court row tagged to specific userId
   async createCourt(req, res) {
-    console.log(this.courtModel, this.model);
     try {
       const court = await this.courtModel.create(req.body);
       return res.json(court);

@@ -3,9 +3,11 @@ import express from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
+import db from "./db/models/index.js";
 import ListingsRouter from "./routers/listingsRouter.js";
 import ListingsController from "./controllers/listingsController.js";
-import db from "./db/models/index.js";
+import FirebaseController from "./controllers/firebaseController.js";
+import FirebaseRouter from "./routers/firebaseRouter.js";
 
 //initialize env file
 dotenv.config();
@@ -16,11 +18,13 @@ const app = express();
 //destructure models from db
 const { court } = db;
 
-//initialize controllers, controllers take in model as parameter
+//initialize controllers, controllers passes in models
 const listingsController = new ListingsController(court);
+const firebaseController = new FirebaseController(court);
 
-//initialize routers, routers take in controller as parameter
+//initialize routers, routers passes in controllers
 const listingsRouter = new ListingsRouter(listingsController).routes();
+const firebaseRouter = new FirebaseRouter(firebaseController).routes();
 
 // logger
 app.use(morgan("dev"));
@@ -33,6 +37,7 @@ app.use(express.json());
 
 // use routers
 app.use("/listings", listingsRouter);
+app.use("/firebase", firebaseRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);

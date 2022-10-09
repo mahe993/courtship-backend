@@ -29,6 +29,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATEONLY,
       },
+      url: {
+        type: Sequelize.ARRAY(Sequelize.JSONB),
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

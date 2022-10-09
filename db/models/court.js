@@ -18,6 +18,8 @@ export default (sequelize, DataTypes) => {
       description: DataTypes.TEXT,
       price: DataTypes.INTEGER,
       expiry: DataTypes.DATEONLY,
+      //url data example: [{firebasePath: "images/courtPic1.jpg", imageUrl: "getdownloadURL.com"}, {...}]
+      url: DataTypes.ARRAY(DataTypes.JSONB),
     },
     {
       sequelize,
