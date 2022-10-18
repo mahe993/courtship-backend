@@ -2,7 +2,7 @@
 import { Model } from "sequelize";
 
 export default (sequelize, DataTypes) => {
-  class Court extends Model {
+  class User extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -10,31 +10,25 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.user);
+      this.hasMany(models.court);
       this.hasMany(models.booking);
     }
   }
-  Court.init(
+  User.init(
     {
-      courtName: DataTypes.STRING,
-      address: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      price: DataTypes.INTEGER,
-      //url data example: [{firebasePath: "images/courtPic1.jpg", imageUrl: "getdownloadURL.com"}, {...}]
-      pictureUrl: DataTypes.JSONB,
-      userId: {
+      auth_key: DataTypes.UUID,
+      wallet: {
         type: DataTypes.INTEGER,
-        references: {
-          model: "users",
-          key: "id",
-        },
+        defaultValue: 0,
       },
+      username: DataTypes.STRING,
+      email: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "court",
+      modelName: "user",
       underscored: true,
     }
   );
-  return Court;
+  return User;
 };

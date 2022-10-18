@@ -2,7 +2,7 @@
 import { Model } from "sequelize";
 
 export default (sequelize, DataTypes) => {
-  class Court extends Model {
+  class Booking extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,17 +11,16 @@ export default (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.user);
-      this.hasMany(models.booking);
     }
   }
-  Court.init(
+  Booking.init(
     {
-      courtName: DataTypes.STRING,
-      address: DataTypes.STRING,
-      description: DataTypes.TEXT,
-      price: DataTypes.INTEGER,
-      //url data example: [{firebasePath: "images/courtPic1.jpg", imageUrl: "getdownloadURL.com"}, {...}]
-      pictureUrl: DataTypes.JSONB,
+      // FORMAT: `${court_id}-${timeslot_id}-${date_id}
+      bookingNumber: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        unique: true,
+      },
       userId: {
         type: DataTypes.INTEGER,
         references: {
@@ -29,12 +28,21 @@ export default (sequelize, DataTypes) => {
           key: "id",
         },
       },
+      courtId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "courts",
+          key: "id",
+        },
+      },
+      time: DataTypes.INTEGER,
+      date: DataTypes.DATEONLY,
     },
     {
       sequelize,
-      modelName: "court",
+      modelName: "booking",
       underscored: true,
     }
   );
-  return Court;
+  return Booking;
 };

@@ -1,24 +1,39 @@
 import BaseController from "./baseController.js";
 
-export default class ListingsController extends BaseController {
+export default class CourtsController extends BaseController {
   constructor(courtModel) {
     //pass the model you want to use for this.model into super
-    super();
+    super(courtModel);
     this.courtModel = courtModel;
   }
 
   // Retrieve all court listings posted by specific userId
-  async getUserListings(req, res) {
+  async getUserCourts(req, res) {
     const { userId } = req.params;
     try {
-      const userListings = await this.courtModel.findByPk(userId);
+      const userListings = await this.courtModel.findAll({
+        where: {
+          user_id: userId,
+        },
+      });
       return res.json(userListings);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
   }
 
-  // Create a court row tagged to specific userId
+  // Retrieve a specific court
+  async getSpecificCourt(req, res) {
+    const { courtId } = req.params;
+    try {
+      const specificCourt = await this.courtModel.findByPK(courtId);
+      return res.json(specificCourt);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // Create a court row
   async createCourt(req, res) {
     try {
       const court = await this.courtModel.create(req.body);

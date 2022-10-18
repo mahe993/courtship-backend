@@ -3,31 +3,17 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("courts", {
+    await queryInterface.createTable("bookings", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      court_name: {
+      booking_number: {
         allowNull: false,
-        type: Sequelize.STRING,
-      },
-      address: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      description: {
-        allowNull: false,
-        type: Sequelize.TEXT,
-      },
-      price: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      picture_url: {
-        type: Sequelize.JSONB,
+        unique: true,
+        type: Sequelize.UUID,
       },
       user_id: {
         allowNull: false,
@@ -36,6 +22,22 @@ module.exports = {
           model: "users",
           key: "id",
         },
+      },
+      court_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "courts",
+          key: "id",
+        },
+      },
+      time: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
+      date: {
+        allowNull: false,
+        type: Sequelize.DATEONLY,
       },
       created_at: {
         allowNull: false,
@@ -49,6 +51,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("courts");
+    await queryInterface.dropTable("bookings");
   },
 };

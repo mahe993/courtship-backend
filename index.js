@@ -4,8 +4,8 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import morgan from "morgan";
 import db from "./db/models/index.js";
-import ListingsRouter from "./routers/listingsRouter.js";
-import ListingsController from "./controllers/listingsController.js";
+import CourtsRouter from "./routers/courtsRouter.js";
+import CourtsController from "./controllers/courtsController.js";
 import FirebaseController from "./controllers/firebaseController.js";
 import FirebaseRouter from "./routers/firebaseRouter.js";
 
@@ -19,11 +19,11 @@ const app = express();
 const { court } = db;
 
 //initialize controllers, controllers passes in models
-const listingsController = new ListingsController(court);
+const courtsController = new CourtsController(court);
 const firebaseController = new FirebaseController(court);
 
 //initialize routers, routers passes in controllers
-const listingsRouter = new ListingsRouter(listingsController).routes();
+const courtsRouter = new CourtsRouter(courtsController).routes();
 const firebaseRouter = new FirebaseRouter(firebaseController).routes();
 
 // logger
@@ -36,7 +36,7 @@ app.use(cors());
 app.use(express.json());
 
 // use routers
-app.use("/listings", listingsRouter);
+app.use("/courts", courtsRouter);
 app.use("/firebase", firebaseRouter);
 
 app.listen(PORT, () => {

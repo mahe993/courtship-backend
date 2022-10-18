@@ -5,7 +5,7 @@ export default class BaseController {
 
   async getAll(req, res) {
     try {
-      const output = await this.model.findAll({ order: [["id", "ASC"]] });
+      const output = await this.model.findAll({ order: [["price", "ASC"]] });
       return res.json(output);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
