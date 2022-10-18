@@ -24,6 +24,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
+        unique: true,
       },
       created_at: {
         allowNull: false,

@@ -26,7 +26,7 @@ export default class CourtsController extends BaseController {
   async getSpecificCourt(req, res) {
     const { courtId } = req.params;
     try {
-      const specificCourt = await this.courtModel.findByPK(courtId);
+      const specificCourt = await this.courtModel.findByPk(courtId);
       return res.json(specificCourt);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
