@@ -17,7 +17,7 @@ module.exports = {
         },
         {
           auth_key: uuidv4(),
-          email: "tester1@tester.com",
+          email: "tester2@tester.com",
           created_at: new Date(),
           updated_at: new Date(),
         },

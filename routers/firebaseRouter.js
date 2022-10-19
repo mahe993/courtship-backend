@@ -13,7 +13,7 @@ export default class FirebaseRouter {
     router.post(
       "/courtpics/:courtId",
       upload.array("pictures", 5),
-      this.controller.test.bind(this.controller)
+      this.controller.postCourtPictures.bind(this.controller)
     );
 
     return router;
