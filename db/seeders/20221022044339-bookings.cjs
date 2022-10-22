@@ -24,6 +24,15 @@ module.exports = {
           created_at: new Date(),
           updated_at: new Date(),
         },
+        {
+          booking_number: "3-2022-10-25-6",
+          user_id: 1,
+          court_id: 3,
+          time: 6,
+          date: new Date(2022, 10, 23),
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
       ],
       {}
     );
