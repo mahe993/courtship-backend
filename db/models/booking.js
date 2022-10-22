@@ -17,7 +17,7 @@ export default (sequelize, DataTypes) => {
     {
       // FORMAT: `${court_id}-${timeslot_id}-${date_id}
       bookingNumber: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },

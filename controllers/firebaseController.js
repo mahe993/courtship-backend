@@ -25,7 +25,6 @@ export default class FirebaseController {
         // upload to firebase
         const uploadTask = await uploadBytesResumable(storageRef, file.buffer, {
           contentType: "image/jpg",
-          cacheControl: "no-cache",
         });
         // get picture downloadurl and firebasepath as an object
         const downloadTask = await this.getPictureUrlObject(uploadTask);

@@ -19,7 +19,7 @@ export default (sequelize, DataTypes) => {
       courtName: DataTypes.STRING,
       address: DataTypes.STRING,
       description: DataTypes.TEXT,
-      price: DataTypes.INTEGER,
+      price: { type: DataTypes.INTEGER, validate: { max: 999 } },
       //url data example: [{firebasePath: "images/courtPic1.jpg", imageUrl: "getdownloadURL.com"}, {...}]
       pictureUrl: DataTypes.JSONB,
       userId: {

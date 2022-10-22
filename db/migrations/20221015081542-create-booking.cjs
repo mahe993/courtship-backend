@@ -13,7 +13,7 @@ module.exports = {
       booking_number: {
         allowNull: false,
         unique: true,
-        type: Sequelize.UUID,
+        type: Sequelize.STRING,
       },
       user_id: {
         allowNull: false,

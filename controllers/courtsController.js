@@ -15,6 +15,7 @@ export default class CourtsController extends BaseController {
         where: {
           user_id: userId,
         },
+        order: [["created_at", "ASC"]],
       });
       return res.json(userListings);
     } catch (err) {
