@@ -49,6 +49,23 @@ export default class BookingsController extends BaseController {
     }
   }
 
+  // Retrieve booking receipts
+  async getSuccessfulBooking(req, res) {
+    const { bookingId } = req.params;
+    try {
+      const booking = await this.model.findOne({
+        where: { id: bookingId },
+        include: this.courtModel,
+      });
+      const { court } = booking;
+      delete booking.dataValues.court;
+      booking.dataValues.address = court.address;
+      return res.json(booking);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   // Create booking
   async createBooking(req, res) {
     try {

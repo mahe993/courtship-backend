@@ -10,7 +10,7 @@ module.exports = {
           court_name: "New Court",
           address: "Greenwich drive, 123, #02-003-13, Singapore 123456",
           description:
-            "Private court along greenwich drive. Vacation home so you have it all to yourself. Instructions upon payment.",
+            "Private court along greenwich drive.\n\nVacation home so you have it all to yourself.\n\nInstructions upon payment.",
           price: 30,
           //url data example: [{firebasePath: "images/courtPic1.jpg", imageUrl: "getdownloadURL.com"}, {...}]
           picture_url: JSON.stringify([
@@ -33,16 +33,9 @@ module.exports = {
           court_name: "Old Court",
           address:
             "156 Google Road, Tennis Building, #10-234, Singapore 123456",
-          description: "Court at google HQ",
+          description:
+            "Court at google HQ\n\nThis is a business district and you will have to jump through layers of security to get here.\n\nIntructions will be provided upon payment.",
           price: 50,
-          //url data example: [{firebasePath: "images/courtPic1.jpg", imageUrl: "getdownloadURL.com"}, {...}]
-          picture_url: JSON.stringify([
-            {
-              firebasePath: "seeder/court3.jpg",
-              downloadUrl:
-                "https://firebasestorage.googleapis.com/v0/b/courtship-firebase.appspot.com/o/seeder%2Fcourt3.jpg?alt=media&token=a68beb0a-67c5-4d5c-8042-37489daeb513",
-            },
-          ]),
           user_id: 1,
           created_at: new Date(),
           updated_at: new Date(),
@@ -50,8 +43,16 @@ module.exports = {
         {
           court_name: "Nadal Clay",
           address: "23 Claymore lane, Nadal Academy, #9-887, Singapore 987654",
-          description: "Nadal Academy clay court",
-          price: 25,
+          description:
+            "Nadal Academy clay court\n\nSpecially developed by the man, the myth, the legend - Nadal himself.\n\nRenting this place out when Nadal is not practicing here. Coaches are available on demand. Approach counter when you arrive.",
+          price: 80,
+          picture_url: JSON.stringify([
+            {
+              firebasePath: "seeder/court3.jpg",
+              downloadUrl:
+                "https://firebasestorage.googleapis.com/v0/b/courtship-firebase.appspot.com/o/seeder%2Fcourt3.jpg?alt=media&token=a68beb0a-67c5-4d5c-8042-37489daeb513",
+            },
+          ]),
           user_id: 2,
           created_at: new Date(),
           updated_at: new Date(),
@@ -60,7 +61,8 @@ module.exports = {
           court_name: "5 courts",
           address:
             "5 Court alley, maximum court suites, #99-99, Singapore 999999",
-          description: "This has 5 court pictures",
+          description:
+            "This has 5 court pictures.\n\nAbsolutely perfect for development so I can see how carousel is working for the pictures",
           picture_url: JSON.stringify([
             {
               firebasePath: "seeder/court1.jpg",

@@ -16,6 +16,10 @@ export default class BookingsRouter {
       "/user:userId",
       this.controller.getUserBookings.bind(this.controller)
     );
+    router.get(
+      "/success/:bookingId",
+      this.controller.getSuccessfulBooking.bind(this.controller)
+    );
     router.post("/", this.controller.createBooking.bind(this.controller));
 
     return router;
