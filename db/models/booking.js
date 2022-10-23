@@ -11,6 +11,7 @@ export default (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.user);
+      this.belongsTo(models.court);
     }
   }
   Booking.init(
@@ -35,7 +36,21 @@ export default (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      time: DataTypes.INTEGER,
+      timeslot: {
+        type: DataTypes.INTEGER,
+        validate: {
+          isEven(value) {
+            if (value % 2 !== 0) {
+              throw new Error("Not a valid timeslot!");
+            }
+          },
+          isWithinTimeslotRange(value) {
+            if (value < 10 || value > 20) {
+              throw new Error("Not a valid timeslot!");
+            }
+          },
+        },
+      },
       date: DataTypes.DATEONLY,
     },
     {

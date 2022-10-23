@@ -23,7 +23,7 @@ const { court, booking } = db;
 //initialize controllers, controllers passes in models
 const courtsController = new CourtsController(court);
 const firebaseController = new FirebaseController(court);
-const bookingsController = new BookingsController(booking);
+const bookingsController = new BookingsController(booking, court);
 
 //initialize routers, routers passes in controllers
 const courtsRouter = new CourtsRouter(courtsController).routes();

@@ -1,13 +1,14 @@
 import BaseController from "./baseController.js";
 
 export default class BookingsController extends BaseController {
-  constructor(bookingModel) {
+  constructor(bookingModel, courtModel) {
     //pass the model you want to use for this.model into super
     super(bookingModel);
     this.bookingModel = bookingModel;
+    this.courtModel = courtModel;
   }
 
-  // Retrieve all bookings by specific court
+  // Retrieve all bookings time and date by specific court
   async getCourtBookings(req, res) {
     const { courtId } = req.params;
     try {
@@ -16,7 +17,11 @@ export default class BookingsController extends BaseController {
           court_id: courtId,
         },
       });
-      return res.json(courtBookings);
+
+      const bookingsTimeDate = courtBookings.map((booking) => {
+        return { date: booking.date, timeslot: booking.timeslot };
+      });
+      return res.json(bookingsTimeDate);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
@@ -30,8 +35,25 @@ export default class BookingsController extends BaseController {
         where: {
           user_id: userId,
         },
+        include: this.courtModel,
       });
-      return res.json(userBookings);
+      const bookingsWithPictures = userBookings.map((booking) => {
+        const { court } = booking;
+        delete booking.dataValues.court;
+        booking.dataValues.pictureUrl = court.pictureUrl;
+        return booking;
+      });
+      return res.json(bookingsWithPictures);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // Create booking
+  async createBooking(req, res) {
+    try {
+      const newBooking = await this.bookingModel.create(req.body);
+      return res.json(newBooking);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }

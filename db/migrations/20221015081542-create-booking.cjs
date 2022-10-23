@@ -31,7 +31,7 @@ module.exports = {
           key: "id",
         },
       },
-      time: {
+      timeslot: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
