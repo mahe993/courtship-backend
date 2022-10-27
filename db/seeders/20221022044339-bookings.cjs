@@ -9,7 +9,7 @@ module.exports = {
         {
           booking_number: "3-2022-11-02-12",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
-          court_id: 3,
+          court_id: 1,
           timeslot: 12,
           date: "2022-11-02",
           created_at: new Date(),
@@ -27,7 +27,7 @@ module.exports = {
         {
           booking_number: "3-2022-10-25-20",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
-          court_id: 3,
+          court_id: 1,
           timeslot: 20,
           date: "2022-10-25",
           created_at: new Date(),
@@ -36,7 +36,7 @@ module.exports = {
         {
           booking_number: "3-2022-10-25-16",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
-          court_id: 3,
+          court_id: 2,
           timeslot: 16,
           date: "2022-10-25",
           created_at: new Date(),

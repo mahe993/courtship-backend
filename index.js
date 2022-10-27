@@ -11,6 +11,8 @@ import FirebaseRouter from "./routers/firebaseRouter.js";
 import BookingsController from "./controllers/bookingsController.js";
 import BookingsRouter from "./routers/bookingsRouter.js";
 import { auth } from "express-oauth2-jwt-bearer";
+import UsersController from "./controllers/usersController.js";
+import UsersRouter from "./routers/usersRouter.js";
 
 //initialize env file
 dotenv.config();
@@ -24,12 +26,13 @@ const checkJwt = auth({
 });
 
 //destructure models from db
-const { court, booking } = db;
+const { court, booking, user } = db;
 
 //initialize controllers, controllers passes in models
 const courtsController = new CourtsController(court);
 const firebaseController = new FirebaseController(court);
 const bookingsController = new BookingsController(booking, court);
+const usersController = new UsersController(user);
 
 //initialize routers, routers passes in controllers, auth
 const courtsRouter = new CourtsRouter(courtsController, checkJwt).routes();
@@ -38,6 +41,7 @@ const bookingsRouter = new BookingsRouter(
   bookingsController,
   checkJwt
 ).routes();
+const usersRouter = new UsersRouter(usersController).routes();
 
 // logger
 app.use(morgan("dev"));
@@ -52,6 +56,7 @@ app.use(express.json());
 app.use("/courts", courtsRouter);
 app.use("/firebase", checkJwt, firebaseRouter);
 app.use("/bookings", bookingsRouter);
+app.use("/users", checkJwt, usersRouter);
 
 app.listen(PORT, () => {
   console.log(`Express app listening on port ${PORT}!`);

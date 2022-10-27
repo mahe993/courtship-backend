@@ -23,6 +23,7 @@ export default (sequelize, DataTypes) => {
       },
       username: DataTypes.STRING,
       email: DataTypes.STRING,
+      phoneNumber: DataTypes.STRING,
     },
     {
       sequelize,
