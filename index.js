@@ -17,6 +17,7 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 const app = express();
+// adding auth0
 const checkJwt = auth({
   audience: process.env.AUTH0_AUDIENCE,
   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
