@@ -8,7 +8,7 @@ module.exports = {
       [
         {
           booking_number: "3-2022-11-02-12",
-          user_id: 2,
+          user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 3,
           timeslot: 12,
           date: "2022-11-02",
@@ -17,7 +17,7 @@ module.exports = {
         },
         {
           booking_number: "3-2022-11-03-10",
-          user_id: 2,
+          user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 3,
           timeslot: 10,
           date: "2022-11-03",
@@ -26,7 +26,7 @@ module.exports = {
         },
         {
           booking_number: "3-2022-10-25-20",
-          user_id: 1,
+          user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 3,
           timeslot: 20,
           date: "2022-10-25",
@@ -35,7 +35,7 @@ module.exports = {
         },
         {
           booking_number: "3-2022-10-25-16",
-          user_id: 1,
+          user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 3,
           timeslot: 16,
           date: "2022-10-25",
@@ -44,7 +44,7 @@ module.exports = {
         },
         {
           booking_number: "3-2022-11-05-16",
-          user_id: 2,
+          user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 3,
           timeslot: 16,
           date: "2022-11-05",
@@ -53,7 +53,7 @@ module.exports = {
         },
         {
           booking_number: "3-2022-11-05-20",
-          user_id: 1,
+          user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 3,
           timeslot: 20,
           date: "2022-11-05",

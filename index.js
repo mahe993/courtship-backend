@@ -10,12 +10,17 @@ import FirebaseController from "./controllers/firebaseController.js";
 import FirebaseRouter from "./routers/firebaseRouter.js";
 import BookingsController from "./controllers/bookingsController.js";
 import BookingsRouter from "./routers/bookingsRouter.js";
+import { auth } from "express-oauth2-jwt-bearer";
 
 //initialize env file
 dotenv.config();
 
 const PORT = process.env.PORT;
 const app = express();
+const checkJwt = auth({
+  audience: process.env.AUTH0_AUDIENCE,
+  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
+});
 
 //destructure models from db
 const { court, booking } = db;
@@ -25,10 +30,13 @@ const courtsController = new CourtsController(court);
 const firebaseController = new FirebaseController(court);
 const bookingsController = new BookingsController(booking, court);
 
-//initialize routers, routers passes in controllers
-const courtsRouter = new CourtsRouter(courtsController).routes();
+//initialize routers, routers passes in controllers, auth
+const courtsRouter = new CourtsRouter(courtsController, checkJwt).routes();
 const firebaseRouter = new FirebaseRouter(firebaseController).routes();
-const bookingsRouter = new BookingsRouter(bookingsController).routes();
+const bookingsRouter = new BookingsRouter(
+  bookingsController,
+  checkJwt
+).routes();
 
 // logger
 app.use(morgan("dev"));
@@ -41,7 +49,7 @@ app.use(express.json());
 
 // use routers
 app.use("/courts", courtsRouter);
-app.use("/firebase", firebaseRouter);
+app.use("/firebase", checkJwt, firebaseRouter);
 app.use("/bookings", bookingsRouter);
 
 app.listen(PORT, () => {

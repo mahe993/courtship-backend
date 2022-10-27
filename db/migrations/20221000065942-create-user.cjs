@@ -6,14 +6,8 @@ module.exports = {
     await queryInterface.createTable("users", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      auth_key: {
-        allowNull: false,
-        unique: true,
-        type: Sequelize.UUID,
+        type: Sequelize.STRING,
       },
       wallet: {
         type: Sequelize.INTEGER,
@@ -24,7 +18,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        unique: true,
+        allowNull: false,
       },
       created_at: {
         allowNull: false,

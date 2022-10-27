@@ -3,8 +3,9 @@ import express from "express";
 const router = express.Router();
 
 export default class BookingsRouter {
-  constructor(controller) {
+  constructor(controller, checkJwt) {
     this.controller = controller;
+    this.checkJwt = checkJwt;
   }
 
   routes() {
@@ -14,13 +15,19 @@ export default class BookingsRouter {
     );
     router.get(
       "/user:userId",
+      this.checkJwt,
       this.controller.getUserBookings.bind(this.controller)
     );
     router.get(
       "/success/:bookingId",
+      this.checkJwt,
       this.controller.getSuccessfulBooking.bind(this.controller)
     );
-    router.post("/", this.controller.createBooking.bind(this.controller));
+    router.post(
+      "/",
+      this.checkJwt,
+      this.controller.createBooking.bind(this.controller)
+    );
 
     return router;
   }

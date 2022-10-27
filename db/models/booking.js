@@ -23,7 +23,7 @@ export default (sequelize, DataTypes) => {
         unique: true,
       },
       userId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: {
           model: "users",
           key: "id",

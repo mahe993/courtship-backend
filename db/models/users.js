@@ -16,7 +16,7 @@ export default (sequelize, DataTypes) => {
   }
   User.init(
     {
-      auth_key: DataTypes.UUID,
+      id: { type: DataTypes.STRING, primaryKey: true },
       wallet: {
         type: DataTypes.INTEGER,
         defaultValue: 0,

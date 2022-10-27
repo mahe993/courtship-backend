@@ -23,7 +23,7 @@ export default (sequelize, DataTypes) => {
       //url data example: [{firebasePath: "images/courtPic1.jpg", imageUrl: "getdownloadURL.com"}, {...}]
       pictureUrl: DataTypes.JSONB,
       userId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         references: {
           model: "users",
           key: "id",
