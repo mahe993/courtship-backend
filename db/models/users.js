@@ -31,7 +31,8 @@ export default (sequelize, DataTypes) => {
       },
       username: DataTypes.STRING,
       email: DataTypes.STRING,
-      phoneNumber: DataTypes.STRING,
+      phoneNumber: DataTypes.INTEGER,
+      profilePicture: DataTypes.JSONB,
     },
     {
       sequelize,

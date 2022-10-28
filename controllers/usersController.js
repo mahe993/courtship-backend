@@ -41,4 +41,25 @@ export default class UsersController extends BaseController {
       return res.status(400).json({ error: true, msg: err });
     }
   }
+
+  // update user details
+  async updateDetails(req, res) {
+    const { userId } = req.params;
+    try {
+      const transaction = await db.sequelize.transaction(async (t) => {
+        const user = await this.userModel.findByPk(userId, { transaction: t });
+        const update = await user.update(
+          { username: req.body.username, phoneNumber: req.body.phoneNumber },
+          {
+            transaction: t,
+          }
+        );
+        return update;
+      });
+      return res.json(transaction);
+    } catch (err) {
+      console.log("hi");
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
 }

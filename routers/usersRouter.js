@@ -16,6 +16,10 @@ export default class UsersRouter {
       "/:userId/wallet/",
       this.controller.walletTransaction.bind(this.controller)
     );
+    router.put(
+      "/:userId/details",
+      this.controller.updateDetails.bind(this.controller)
+    );
     return router;
   }
 }

@@ -21,7 +21,10 @@ module.exports = {
         allowNull: false,
       },
       phone_number: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+      },
+      profile_picture: {
+        type: Sequelize.JSONB,
       },
       created_at: {
         allowNull: false,
