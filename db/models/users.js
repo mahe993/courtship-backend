@@ -20,6 +20,14 @@ export default (sequelize, DataTypes) => {
       wallet: {
         type: DataTypes.INTEGER,
         defaultValue: 0,
+        validate: {
+          checkBalance(value) {
+            if (value < 0) {
+              throw new Error("Not enough money in wallet!");
+            }
+            console.log(value);
+          },
+        },
       },
       username: DataTypes.STRING,
       email: DataTypes.STRING,

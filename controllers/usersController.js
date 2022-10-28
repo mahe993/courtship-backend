@@ -1,3 +1,4 @@
+import db from "../db/models/index.js";
 import BaseController from "./baseController.js";
 
 export default class UsersController extends BaseController {
@@ -10,7 +11,6 @@ export default class UsersController extends BaseController {
   // find or create specific user
   async getUser(req, res) {
     const { userId, email } = req.params;
-    console.log(req.params);
     try {
       const [user, created] = await this.userModel.findOrCreate({
         where: { id: userId },
@@ -18,6 +18,26 @@ export default class UsersController extends BaseController {
       });
       return res.json(user);
     } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // update wallet for user
+  async walletTransaction(req, res) {
+    const { userId } = req.params;
+    try {
+      const transaction = await db.sequelize.transaction(async (t) => {
+        const user = await this.userModel.findByPk(userId, { transaction: t });
+        const increment = await user.increment("wallet", {
+          by: req.body.wallet,
+          transaction: t,
+        });
+        const validate = await increment.validate();
+        return validate;
+      });
+      return res.json(transaction);
+    } catch (err) {
+      console.log("hi");
       return res.status(400).json({ error: true, msg: err });
     }
   }

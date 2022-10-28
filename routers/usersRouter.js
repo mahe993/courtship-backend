@@ -12,6 +12,10 @@ export default class UsersRouter {
       "/:userId/:email",
       this.controller.getUser.bind(this.controller)
     );
+    router.put(
+      "/:userId/wallet/",
+      this.controller.walletTransaction.bind(this.controller)
+    );
     return router;
   }
 }
