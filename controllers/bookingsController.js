@@ -49,11 +49,11 @@ export default class BookingsController extends BaseController {
     }
   }
 
-  // Retrieve booking receipts
-  async getSuccessfulBooking(req, res) {
+  // Retrieve specific booking
+  async getSpecificBooking(req, res) {
     const { bookingId } = req.params;
     try {
-      const booking = await this.model.findOne({
+      const booking = await this.bookingModel.findOne({
         where: { id: bookingId },
         include: this.courtModel,
       });
@@ -61,6 +61,20 @@ export default class BookingsController extends BaseController {
       delete booking.dataValues.court;
       booking.dataValues.address = court.address;
       return res.json(booking);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // Update a specific booking
+  async updateSpecificBooking(req, res) {
+    const { bookingId } = req.params;
+    try {
+      const court = await this.bookingModel.update(
+        { status: req.body.status },
+        { where: { id: bookingId }, returning: true }
+      );
+      return res.json(court[1][0]);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }

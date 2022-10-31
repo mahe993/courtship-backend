@@ -19,9 +19,14 @@ export default class BookingsRouter {
       this.controller.getUserBookings.bind(this.controller)
     );
     router.get(
-      "/success/:bookingId",
+      "/:bookingId",
       this.checkJwt,
-      this.controller.getSuccessfulBooking.bind(this.controller)
+      this.controller.getSpecificBooking.bind(this.controller)
+    );
+    router.put(
+      "/:bookingId",
+      this.checkJwt,
+      this.controller.updateSpecificBooking.bind(this.controller)
     );
     router.post(
       "/",

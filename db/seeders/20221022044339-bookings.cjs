@@ -7,11 +7,11 @@ module.exports = {
       "bookings",
       [
         {
-          booking_number: "3-2022-11-02-12",
+          booking_number: "3-2022-11-01-12",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 1,
           timeslot: 12,
-          date: "2022-11-02",
+          date: "2022-11-01",
           created_at: new Date(),
           updated_at: new Date(),
         },

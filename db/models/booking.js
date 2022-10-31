@@ -24,6 +24,7 @@ export default (sequelize, DataTypes) => {
       },
       userId: {
         type: DataTypes.STRING,
+        allowNull: false,
         references: {
           model: "users",
           key: "id",
@@ -31,6 +32,7 @@ export default (sequelize, DataTypes) => {
       },
       courtId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
           model: "courts",
           key: "id",
@@ -38,6 +40,7 @@ export default (sequelize, DataTypes) => {
       },
       timeslot: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         validate: {
           isEven(value) {
             if (value % 2 !== 0) {
@@ -52,6 +55,12 @@ export default (sequelize, DataTypes) => {
         },
       },
       date: DataTypes.DATEONLY,
+      status: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [["Upcoming", "Completed"]],
+        },
+      },
     },
     {
       sequelize,
