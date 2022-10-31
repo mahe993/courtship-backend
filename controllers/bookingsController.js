@@ -35,6 +35,10 @@ export default class BookingsController extends BaseController {
         where: {
           user_id: userId,
         },
+        order: [
+          ["date", "ASC"],
+          ["timeslot", "ASC"],
+        ],
         include: this.courtModel,
       });
       const bookingsWithPictures = userBookings.map((booking) => {
