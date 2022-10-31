@@ -37,7 +37,6 @@ export default class UsersController extends BaseController {
       });
       return res.json(transaction);
     } catch (err) {
-      console.log("hi");
       return res.status(400).json({ error: true, msg: err });
     }
   }
@@ -58,7 +57,6 @@ export default class UsersController extends BaseController {
       });
       return res.json(transaction);
     } catch (err) {
-      console.log("hi");
       return res.status(400).json({ error: true, msg: err });
     }
   }

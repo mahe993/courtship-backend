@@ -25,7 +25,6 @@ export default (sequelize, DataTypes) => {
             if (value < 0) {
               throw new Error("Not enough money in wallet!");
             }
-            console.log(value);
           },
         },
       },
