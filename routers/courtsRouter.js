@@ -24,6 +24,11 @@ export default class CourtsRouter {
       this.checkJwt,
       this.controller.createCourt.bind(this.controller)
     );
+    router.put(
+      "/courtyard/:courtId",
+      this.checkJwt,
+      this.controller.updateSpecificCourt.bind(this.controller)
+    );
     return router;
   }
 }

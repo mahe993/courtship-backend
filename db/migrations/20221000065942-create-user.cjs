@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       wallet: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },

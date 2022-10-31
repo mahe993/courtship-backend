@@ -29,6 +29,12 @@ export default (sequelize, DataTypes) => {
           key: "id",
         },
       },
+      status: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [["Active", "Inactive"]],
+        },
+      },
     },
     {
       sequelize,

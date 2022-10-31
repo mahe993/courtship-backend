@@ -7,6 +7,19 @@ export default class CourtsController extends BaseController {
     this.courtModel = courtModel;
   }
 
+  // Retrieve all active courts
+  async getAll(req, res) {
+    try {
+      const output = await this.courtModel.findAll({
+        where: { status: "Active" },
+        order: [["price", "ASC"]],
+      });
+      return res.json(output);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
   // Retrieve all court listings posted by specific userId
   async getUserCourts(req, res) {
     const { userId } = req.params;
@@ -29,6 +42,21 @@ export default class CourtsController extends BaseController {
     try {
       const specificCourt = await this.courtModel.findByPk(courtId);
       return res.json(specificCourt);
+    } catch (err) {
+      return res.status(400).json({ error: true, msg: err });
+    }
+  }
+
+  // Update a specific court
+  async updateSpecificCourt(req, res) {
+    const { courtId } = req.params;
+    try {
+      const court = await this.courtModel.update(
+        { status: req.body.status },
+        { where: { id: courtId }, returning: true }
+      );
+
+      return res.json(court[1][0]);
     } catch (err) {
       return res.status(400).json({ error: true, msg: err });
     }
