@@ -14,7 +14,7 @@ const db = {};
 let sequelize;
 if (config[process.env.NODE_ENV].use_env_variable) {
   sequelize = new Sequelize(
-    config[process.env.NODE_ENV].use_env_variable,
+    process.env[config[process.env.NODE_ENV].use_env_variable],
     config[process.env.NODE_ENV]
   );
 } else {
