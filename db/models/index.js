@@ -11,16 +11,21 @@ const __dirname = dirname(__filename);
 const basename = path.basename(__filename);
 const db = {};
 
-const sequelize = new Sequelize(
-  config.development.database,
-  config.development.username,
-  config.development.password,
-  {
-    dialect: config.development.dialect,
-    port: config.development.port,
-    host: config.development.host,
-  }
-);
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(
+    config.development.database,
+    config.development.username,
+    config.development.password,
+    {
+      dialect: config.development.dialect,
+      port: config.development.port,
+      host: config.development.host,
+    }
+  );
+}
 
 const files = fs
   .readdirSync(__dirname)
