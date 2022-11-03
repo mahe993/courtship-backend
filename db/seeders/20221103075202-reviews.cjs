@@ -4,65 +4,62 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      "bookings",
+      "reviews",
       [
         {
           id: 1,
-          booking_number: "3-2022-11-01-12",
+          review_code: "auth0|635aa9ec7433f4b1336d6657-1",
+          ratings: 4,
+          experience: "Its a rather good court!",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 1,
-          timeslot: 12,
-          date: "2022-11-01",
+          booking_id: 1,
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
           id: 2,
-          booking_number: "3-2022-11-03-10",
+          review_code: "auth0|635aa9ec7433f4b1336d6657-2",
+          ratings: 3,
+          experience: "Its a rather okay court!",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 3,
-          timeslot: 10,
-          date: "2022-11-03",
+          booking_id: 2,
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
           id: 3,
-          booking_number: "3-2022-10-25-20",
+          review_code: "auth0|635aa9ec7433f4b1336d6657-3",
+          ratings: 4,
+          experience: "Its a very good court with a courteous host!",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 1,
-          timeslot: 20,
-          date: "2022-10-25",
+          booking_id: 3,
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
           id: 4,
-          booking_number: "3-2022-10-25-16",
+          review_code: "auth0|635aa9ec7433f4b1336d6657-4",
+          ratings: 2,
+          experience:
+            "Clealiness is not up to expected. Difficult to find the court",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 2,
-          timeslot: 16,
-          date: "2022-10-25",
+          booking_id: 4,
           created_at: new Date(),
           updated_at: new Date(),
         },
         {
           id: 5,
-          booking_number: "3-2022-11-05-16",
+          review_code: "auth0|635aa9ec7433f4b1336d6657-5",
+          ratings: 1,
+          experience:
+            "Its a horrible court! Do not book. Book at your own risk!!!",
           user_id: "auth0|635aa9ec7433f4b1336d6657",
           court_id: 3,
-          timeslot: 16,
-          date: "2022-11-05",
-          created_at: new Date(),
-          updated_at: new Date(),
-        },
-        {
-          id: 6,
-          booking_number: "3-2022-11-05-20",
-          user_id: "auth0|635aa9ec7433f4b1336d6657",
-          court_id: 3,
-          timeslot: 20,
-          date: "2022-11-05",
+          booking_id: 5,
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -72,6 +69,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("bookings", null, {});
+    await queryInterface.bulkDelete("reviews", null, {});
   },
 };

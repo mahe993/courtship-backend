@@ -7,6 +7,7 @@ module.exports = {
       "courts",
       [
         {
+          id: 1,
           court_name: "New Court",
           address: "Greenwich drive, 123, #02-003-13, Singapore 123456",
           description:
@@ -30,6 +31,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
+          id: 2,
           court_name: "Old Court",
           address:
             "156 Google Road, Tennis Building, #10-234, Singapore 123456",
@@ -41,6 +43,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
+          id: 3,
           court_name: "Nadal Clay",
           address: "23 Claymore lane, Nadal Academy, #9-887, Singapore 987654",
           description:
@@ -58,6 +61,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
+          id: 4,
           court_name: "5 courts",
           address:
             "5 Court alley, maximum court suites, #99-99, Singapore 999999",

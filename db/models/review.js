@@ -2,7 +2,7 @@
 import { Model } from "sequelize";
 
 export default (sequelize, DataTypes) => {
-  class Booking extends Model {
+  class Review extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -10,19 +10,17 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.user);
+      this.belongsTo(models.booking);
       this.belongsTo(models.court);
-      this.hasOne(models.review);
+      this.belongsTo(models.user);
     }
   }
-  Booking.init(
+  Review.init(
     {
-      // FORMAT: `${court_id}-${timeslot_id}-${date_id}
-      bookingNumber: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
+      ratings: { type: DataTypes.INTEGER, allowNull: false },
+      experience: DataTypes.TEXT,
+      //ensure each user only can post 1 review for each completed booking. format: ${userId}-${bookingId}
+      reviewCode: { type: DataTypes.STRING, allowNull: false, unique: true },
       userId: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -39,35 +37,21 @@ export default (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      timeslot: {
+      bookingId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        validate: {
-          isEven(value) {
-            if (value % 2 !== 0) {
-              throw new Error("Not a valid timeslot!");
-            }
-          },
-          isWithinTimeslotRange(value) {
-            if (value < 10 || value > 20) {
-              throw new Error("Not a valid timeslot!");
-            }
-          },
-        },
-      },
-      date: DataTypes.DATEONLY,
-      status: {
-        type: DataTypes.STRING,
-        validate: {
-          isIn: [["Upcoming", "Completed"]],
+        unique: true,
+        references: {
+          model: "courts",
+          key: "id",
         },
       },
     },
     {
       sequelize,
-      modelName: "booking",
+      modelName: "review",
       underscored: true,
     }
   );
-  return Booking;
+  return Review;
 };

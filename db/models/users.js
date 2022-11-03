@@ -12,6 +12,7 @@ export default (sequelize, DataTypes) => {
       // define association here
       this.hasMany(models.court);
       this.hasMany(models.booking);
+      this.hasMany(models.review);
     }
   }
   User.init(
