@@ -1,11 +1,12 @@
 import BaseController from "./baseController.js";
 
 export default class ReviewsController extends BaseController {
-  constructor(reviewModel, bookingModel) {
+  constructor(reviewModel, bookingModel, userModel) {
     //pass the model you want to use for this.model into super
     super(reviewModel);
     this.reviewModel = reviewModel;
     this.bookingModel = bookingModel;
+    this.userModel = userModel;
   }
 
   // Retrieve all reviews for specific court
@@ -18,7 +19,13 @@ export default class ReviewsController extends BaseController {
           ["booking", "date", "ASC"],
           ["booking", "timeslot", "ASC"],
         ],
-        include: this.bookingModel,
+        include: [
+          {
+            model: this.bookingModel,
+            attributes: ["date", "timeslot", "status"],
+          },
+          { model: this.userModel, attributes: ["username", "email"] },
+        ],
       });
       return res.json(output);
     } catch (err) {
@@ -34,6 +41,13 @@ export default class ReviewsController extends BaseController {
         where: {
           booking_id: bookingId,
         },
+        include: [
+          {
+            model: this.bookingModel,
+            attributes: ["date", "timeslot", "status"],
+          },
+          { model: this.userModel, attributes: ["username", "email"] },
+        ],
       });
       return res.json(userReview);
     } catch (err) {

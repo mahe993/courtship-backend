@@ -36,7 +36,7 @@ const courtsController = new CourtsController(court);
 const firebaseController = new FirebaseController(court, user);
 const bookingsController = new BookingsController(booking, court);
 const usersController = new UsersController(user);
-const reviewsController = new ReviewsController(review, booking);
+const reviewsController = new ReviewsController(review, booking, user);
 
 //initialize routers, routers passes in controllers, auth
 const courtsRouter = new CourtsRouter(courtsController, checkJwt).routes();
