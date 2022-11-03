@@ -1,3 +1,4 @@
+import db from "../db/models/index.js";
 import BaseController from "./baseController.js";
 
 export default class ReviewsController extends BaseController {
@@ -26,6 +27,14 @@ export default class ReviewsController extends BaseController {
           },
           { model: this.userModel, attributes: ["username", "email"] },
         ],
+        // attributes: {
+        //   include: [
+        //     [
+        //       db.sequelize.fn("AVG", db.sequelize.col("review.ratings")),
+        //       "averageRating",
+        //     ],
+        //   ],
+        // },
       });
       return res.json(output);
     } catch (err) {
